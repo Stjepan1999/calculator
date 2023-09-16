@@ -1,0 +1,66 @@
+body {
+    font-family: "Times New Roman", sans-serif;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    margin: auto;
+}
+
+.header {
+    font-size: 48px;
+}
+
+.container {
+    display:flex;
+    align-items: center;
+    flex-direction: column;
+    width: 400px;
+    height: 550px;
+    background: rgb(172, 172, 172);
+    border-radius: 20px;
+    border: 3px solid black;
+}
+
+.display {
+    background: lightgrey;
+    width: 350px;
+    height: 100px;
+    border-radius: 20px;
+    margin: 25px;
+    border: 2px solid black;
+}
+
+#clear-button, #delete-button {
+    width: 175px;
+    height: 75px;
+    border-radius: 10px;
+    border: 2px solid black;
+}
+
+#delete-button {
+    background: rgb(250, 160, 160);
+}
+
+#clear-button {
+    background: rgb(174, 160, 255);
+}
+
+.buttons {
+    width:100px;
+    height: 100px;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-items: center;
+    margin: 0;
+    width: 350px;
+    height: 250px;
+}
+
+.buttons button {
+    width: 87.5px;
+    height: 75px;
+    border-radius: 10px;
+    border: 2px solid black;
+}

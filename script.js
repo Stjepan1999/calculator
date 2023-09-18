@@ -1,27 +1,98 @@
-function add(firstNumber, secondNumber) {
-    let result = firstNumber + secondNumber;
-    return result
+let buttons = document.querySelectorAll(".button")
+let operatorButtons = document.querySelectorAll(".operator-button")
+let equalButton = document.querySelector(".equal-button")
+let clearButton = document.querySelector("#clear-button")
+let deleteButton = document.querySelector(".delete-button")
+
+
+let displayCurrentInput = document.querySelector(".display .current-input");
+let displayPastInput = document.querySelector(".display .past-input")
+
+let num1 = ""
+let num2 = ""
+let operator = ""
+let currentInput = "";
+
+
+equalButton.addEventListener("click", () => {
+  if (num1 && operator) {
+    num2 = currentInput;
+    currentInput = "";
+    let result = operate(parseFloat(num1), parseFloat(num2), operator);
+
+    displayCurrentInput.textContent = result;
+    displayPastInput.textContent = `${num1} ${operator} ${num2} =`
+
+    num1 = "";
+    num2 = "";
+    operator = "";
+  }
+})
+
+
+operatorButtons.forEach(button =>
+  button.addEventListener("click", () => {
+    if (num1 === "") {
+      num1 = currentInput;
+      operator = button.dataset.value;
+      currentInput = "";
+      displayPastInput.textContent = `${num1} ${operator}`
+    }
+
+  }))
+
+
+buttons.forEach((button) => {
+  button.addEventListener("click", () => {
+    currentInput += button.dataset.value;
+    displayCurrentInput.textContent = currentInput;
+
+  })
+});
+
+
+clearButton.addEventListener("click", () => clearDisplay())
+
+
+function clearDisplay() {
+  currentInput = "";
+  displayCurrentInput.textContent = currentInput;
+  displayPastInput.textContent = ""
+
 }
 
-function subtract(firstNumber, secondNumber) {
-    let result = firstNumber - secondNumber;
-    return result
+
+
+function add(num1, num2) {
+  let result = num1 + num2;
+  return result
 }
 
-function multiply(firstNumber, secondNumber) {
-    let result = firstNumber * secondNumber;
-    return result
+function subtract(num1, num2) {
+  let result = num1 - num2;
+  return result
 }
 
-function divide(firstNumber, secondNumber) {
-    let result = firstNumber / secondNumber;
-    return result
+function multiply(num1, num2) {
+  let result = num1 * num2;
+  return result
 }
 
-function operate() {
-
+function divide(num1, num2) {
+  let result = num1 / num2;
+  return result
 }
 
+function operate(num1, num2, operator) {
 
-let button = document.querySelector("button")
-button.addEventListener("mouseover", () => {button.style.background = "grey"})
+  switch (operator) {
+    case "+":
+      return add(num1, num2);
+    case "-":
+      return subtract(num1, num2);
+    case "*":
+      return multiply(num1, num2);
+    case "/":
+      return divide(num1, num2);
+  }
+}

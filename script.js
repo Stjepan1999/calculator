@@ -2,8 +2,7 @@ let buttons = document.querySelectorAll(".button")
 let operatorButtons = document.querySelectorAll(".operator-button")
 let equalButton = document.querySelector(".equal-button")
 let clearButton = document.querySelector("#clear-button")
-let deleteButton = document.querySelector(".delete-button")
-
+let deleteButton = document.querySelector("#delete-button")
 
 let displayCurrentInput = document.querySelector(".display .current-input");
 let displayPastInput = document.querySelector(".display .past-input")
@@ -14,9 +13,8 @@ let operator = ""
 let currentInput = "";
 let result = ""
 
-
 equalButton.addEventListener("click", () => {
-  if (num1 && operator && currentInput) {
+  if (num1 && operator && currentInput) { 
     num2 = currentInput;
     currentInput = "";
     result = operate(parseFloat(num1), parseFloat(num2), operator);
@@ -37,7 +35,7 @@ operatorButtons.forEach(button =>
         num1 = result;
         operator = button.dataset.value;
         displayPastInput.textContent = `${num1} ${operator}`
-    } else if (num1 === "") {
+    } else if (num1 === "" && currentInput) {
       num1 = currentInput;
       operator = button.dataset.value;
       currentInput = "";
@@ -57,6 +55,7 @@ buttons.forEach((button) => {
 
 clearButton.addEventListener("click", () => clearDisplay())
 
+deleteButton.addEventListener("click", () => deleteNumber())
 
 function clearDisplay() {
   currentInput = "";
@@ -64,7 +63,14 @@ function clearDisplay() {
   num2 = "";
   result = "";
   displayCurrentInput.textContent = currentInput;
-  displayPastInput.textContent = ""
+  displayPastInput.textContent = "";
+}
+
+
+function deleteNumber() {
+    if (currentInput) {
+    currentInput = currentInput.slice(0, currentInput.length-1)
+    displayCurrentInput.textContent = currentInput;}
 }
 
 function add(num1, num2) {

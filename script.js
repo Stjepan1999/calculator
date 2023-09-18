@@ -12,13 +12,14 @@ let num1 = ""
 let num2 = ""
 let operator = ""
 let currentInput = "";
+let result = ""
 
 
 equalButton.addEventListener("click", () => {
-  if (num1 && operator) {
+  if (num1 && operator && currentInput) {
     num2 = currentInput;
     currentInput = "";
-    let result = operate(parseFloat(num1), parseFloat(num2), operator);
+    result = operate(parseFloat(num1), parseFloat(num2), operator);
 
     displayCurrentInput.textContent = result;
     displayPastInput.textContent = `${num1} ${operator} ${num2} =`
@@ -32,7 +33,11 @@ equalButton.addEventListener("click", () => {
 
 operatorButtons.forEach(button =>
   button.addEventListener("click", () => {
-    if (num1 === "") {
+    if (result && !currentInput) {
+        num1 = result;
+        operator = button.dataset.value;
+        displayPastInput.textContent = `${num1} ${operator}`
+    } else if (num1 === "") {
       num1 = currentInput;
       operator = button.dataset.value;
       currentInput = "";
@@ -46,7 +51,6 @@ buttons.forEach((button) => {
   button.addEventListener("click", () => {
     currentInput += button.dataset.value;
     displayCurrentInput.textContent = currentInput;
-
   })
 });
 
@@ -56,12 +60,12 @@ clearButton.addEventListener("click", () => clearDisplay())
 
 function clearDisplay() {
   currentInput = "";
+  num1 = "";
+  num2 = "";
+  result = "";
   displayCurrentInput.textContent = currentInput;
   displayPastInput.textContent = ""
-
 }
-
-
 
 function add(num1, num2) {
   let result = num1 + num2;

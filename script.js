@@ -19,5 +19,9 @@ function divide(firstNumber, secondNumber) {
 }
 
 function operate() {
-    
+
 }
+
+
+let button = document.querySelector("button")
+button.addEventListener("mouseover", () => {button.style.background = "grey"})
